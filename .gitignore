@@ -2,3 +2,6 @@
 *.png
 *.pdf
 
+# virtual envs
+env/
+
