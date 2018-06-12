@@ -5,3 +5,5 @@
 # virtual envs
 env/
 
+# tensorboard
+my_graph/
