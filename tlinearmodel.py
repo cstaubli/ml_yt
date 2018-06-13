@@ -36,3 +36,7 @@ for i in range(1000):
     pass
 
 print(sess.run([W, b]))
+
+with tf.summary.FileWriter("./my_graph", graph=sess.graph) as writer:
+    writer.flush()
+    pass
