@@ -9,6 +9,7 @@ from tensorflow.contrib import learn
 
 tf.logging.set_verbosity(tf.logging.INFO)
 
+
 def cnn_model_fn(features, labels, mode):
     """Model function for CNN"""
     input_layer = tf.reshape(features["x"], [-1, 28, 28, 1])
@@ -51,9 +52,7 @@ def cnn_model_fn(features, labels, mode):
         pass
 
     # onehot_labels = tf.one_hot(indices=tf.cast(labels, tf.int32), depth=10)
-    loss = tf.losses.sparse_softmax_cross_entropy(
-        labels=labels, logits=logits
-    )
+    loss = tf.losses.sparse_softmax_cross_entropy(labels=labels, logits=logits)
 
     if mode == tf.estimator.ModeKeys.TRAIN:
         optimizer = tf.train.GradientDescentOptimizer(learning_rate=0.001)
@@ -98,6 +97,7 @@ def main(unused_argv):
     print(eval_results)
 
     pass
+
 
 if __name__ == "__main__":
     tf.app.run()
