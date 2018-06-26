@@ -1,7 +1,9 @@
 import numpy as np 
 import tensorflow as tf 
+import matplotlib.pyplot as plt
 
-NUM_STEPS = 40
+NUM_STEPS = 100
+LEARNING_RATE = 0.05
 
 x_data = np.random.randn(2000, 3)
 w_real = [0.3, 0.5, 0.1]
@@ -24,8 +26,7 @@ with g.as_default():
         loss = tf.reduce_mean(tf.square(y_true - y_pred))
 
     with tf.name_scope("train") as scope:
-        learning_rate = 0.25
-        optimizer = tf.train.GradientDescentOptimizer(learning_rate)
+        optimizer = tf.train.GradientDescentOptimizer(LEARNING_RATE)
         train = optimizer.minimize(loss)
 
     init = tf.global_variables_initializer()
@@ -33,9 +34,18 @@ with g.as_default():
         sess.run(init)
         for step in range(NUM_STEPS):
             sess.run(train, {x: x_data, y_true: y_data})
-            if (step % 5 == 0):
+            if (step % 25 == 0):
                 outs = sess.run([w, b])
                 print("Step: {} -> Outs: {}".format(step, outs))
                 wb_.append(outs)
+                plt.plot(outs[0][0])
                 pass
             pass
+        pass
+
+        plt.plot(w_real, "g^")
+        plt.xlabel("X-Axis")
+        plt.ylabel("Value")
+        plt.title("After {} steps".format(NUM_STEPS))
+        plt.legend(["steps 0","steps 25","steps 50","steps 75","real"])
+        plt.show()
