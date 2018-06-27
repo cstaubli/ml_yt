@@ -30,6 +30,7 @@ with g.as_default():
         train = optimizer.minimize(loss)
 
     init = tf.global_variables_initializer()
+    legend = []
     with tf.Session() as sess:
         sess.run(init)
         for step in range(NUM_STEPS):
@@ -39,13 +40,15 @@ with g.as_default():
                 print("Step: {} -> Outs: {}".format(step, outs))
                 wb_.append(outs)
                 plt.plot(outs[0][0])
+                legend.append("Step: {}".format(step))
                 pass
             pass
         pass
 
-        plt.plot(w_real, "g^")
-        plt.xlabel("X-Axis")
-        plt.ylabel("Value")
-        plt.title("After {} steps".format(NUM_STEPS))
-        plt.legend(["steps 0","steps 25","steps 50","steps 75","real"])
-        plt.show()
+    plt.plot(w_real, "g^")
+    legend.append("Real")
+    plt.xlabel("X-Axis")
+    plt.ylabel("Value")
+    plt.title("After {} steps".format(NUM_STEPS))
+    plt.legend(legend)
+    plt.show()
