@@ -1,4 +1,5 @@
-# https://github.com/random-forests/tutorials/blob/master/decision_tree.py
+# coding=utf-8
+# based on https://github.com/random-forests/tutorials/blob/master/decision_tree.py
 
 from __future__ import print_function
 
