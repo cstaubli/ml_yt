@@ -11,8 +11,9 @@ my_graph/
 # LibreOffice Calc
 *.ods
 
-# MNIST data
+# datasets
 MNIST-data/
+datasets/
 
 # vscode
 .vscode/*
